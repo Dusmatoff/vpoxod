@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,9 +11,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class CalculatorController extends AbstractController
 {
     /**
+     * @Route("/", name="app_index", methods={"GET"})
+     */
+    public function index(): Response
+    {
+        return $this->render('calculator/index.html.twig');
+    }
+
+    /**
      * @Route("/calculator", name="app_calculator", methods={"POST"})
      */
-    public function index(Request $request): JsonResponse
+    public function calculator(Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
         if (empty($data) || !isset($data['num1'], $data['num2'], $data['operation'])) {
