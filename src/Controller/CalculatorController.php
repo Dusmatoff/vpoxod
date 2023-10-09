@@ -55,6 +55,6 @@ class CalculatorController extends AbstractController
                 return $this->json(['error' => 'Invalid operation.'], 400);
         }
 
-        return $this->json(['result' => $result, 'calculated' => "$num1 $operation $num2"]);
+        return $this->json(['result' => $result, 'calculated' => "$num1 $operation = $num2"]);
     }
 }
